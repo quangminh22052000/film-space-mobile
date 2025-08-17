@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 
+import { LinearGradient } from "expo-linear-gradient"
 import { useRouter } from "expo-router"
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, View } from "react-native"
@@ -78,6 +79,12 @@ export default function App() {
         styles.container,
         { backgroundColor: lightColors.welcomeScreenBackground },
       ]}>
+      <LinearGradient
+        colors={["#2B0A3D", "#6A0D91", "#FF2E63"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
       <StatusBar style="light" />
       <Animated.View style={[styles.ring2, ring2Style]}>
         <Animated.View style={[styles.ring1, ring1Style]}>
@@ -95,13 +102,9 @@ export default function App() {
             styles.textBold,
             { color: lightColors.white, fontSize: hp(3) },
           ]}>
-          Welcome to food recipe app
+          Film Space
         </Text>
-        <Text
-          variant="bodyLarge"
-          style={[{ color: lightColors.white, fontSize: hp(2) }]}>
-          Recipes were made by Ngọc Thạnh
-        </Text>
+        <Text style={styles.subtitle}>Enjoy unlimited movies anytime</Text>
       </Animated.View>
     </View>
   )
@@ -135,6 +138,10 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     marginBottom: 16,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: "rgba(255,255,255,0.8)",
   },
   textBold: {
     fontWeight: "bold",
