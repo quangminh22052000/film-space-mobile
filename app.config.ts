@@ -17,6 +17,7 @@
 // để kiếm thêm thông tin
 
 import { ConfigContext, ExpoConfig } from "expo/config"
+
 import { version } from "./package.json"
 
 // Replace these with your EAS project ID and project slug.

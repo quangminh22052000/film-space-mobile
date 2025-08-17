@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+.yarn/
+
+# Build outputs
+dist/
+build/
+web-build/
+coverage/
+
+# Native
+ios/
+android/
+
+# Expo
+.expo/
+
+# Lock files
+yarn.lock
+package-lock.json
+
+# Generated files
+*.bundle
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# OS files
+.DS_Store
+*.pem
+
+# Environment files
+.env*

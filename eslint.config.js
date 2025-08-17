@@ -1,7 +1,7 @@
-import js from "@eslint/js"
-import prettier from "eslint-config-prettier"
-import importPlugin from "eslint-plugin-import"
-import tseslint from "typescript-eslint"
+const js = require("@eslint/js")
+const prettier = require("eslint-config-prettier")
+const importPlugin = require("eslint-plugin-import")
+const tseslint = require("typescript-eslint")
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 const config = [
@@ -15,12 +15,32 @@ const config = [
       "**/ios/build/**",
       "**/android/app/build/**",
       "**/*.bundle",
+      "**/.expo/**", // Ignore Expo generated files
+      "**/babel.config.js",
+      "**/metro.config.js",
+      "**/jest.config.cjs",
+      "**/jest.setup.cjs",
     ],
   },
 
   // ✅ Base configs
   js.configs.recommended,
   ...tseslint.configs.recommended,
+
+  // ✅ Cấu hình cho file ESLint config
+  {
+    files: ["eslint.config.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "commonjs",
+      globals: {
+        require: "readonly",
+        module: "writable",
+        __dirname: "readonly",
+        process: "readonly",
+      },
+    },
+  },
 
   // ✅ Cấu hình môi trường cho các file cấu hình Node
   {
@@ -37,15 +57,16 @@ const config = [
     },
   },
 
-  // ✅ Cấu hình cho source code
+  // ✅ Cấu hình cho source code - cập nhật để bao gồm tất cả source code
   {
-    files: ["src/**/*.{ts,tsx,js,jsx}"], // chỉ lint trong src
+    files: ["**/*.{ts,tsx,js,jsx}"], // lint tất cả source code
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
         project: "./tsconfig.eslint.json",
         sourceType: "module",
         ecmaVersion: "latest",
+        tsconfigRootDir: __dirname,
       },
     },
     plugins: {
@@ -89,4 +110,4 @@ const config = [
   },
 ]
 
-export default config
+module.exports = config
