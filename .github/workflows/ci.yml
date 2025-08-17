@@ -1,92 +1,50 @@
-name: Lint & Format Auto Fix
+name: CI
 
 on:
-  push:
-    branches:
-      - main
-      - develop
   pull_request:
     branches:
       - main
       - develop
 
+permissions:
+  contents: write # Cho phép bot push thay đổi
+
 jobs:
-  lint-fix:
+  lint:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-      pull-requests: write
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Set up Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18 # 👈 phù hợp với Expo SDK 53
+          node-version: 20
           cache: yarn
 
-      # Debug: Kiểm tra Node.js và Yarn version
-      - name: Debug versions
-        run: |
-          echo "Node.js version: $(node --version)"
-          echo "Yarn version: $(yarn --version)"
-          echo "Current directory: $(pwd)"
-          echo "Files in current directory:"
-          ls -la
+      - name: Install dependencies
+        run: yarn install
 
-      # Thử cài với frozen-lockfile
-      - name: Install dependencies (frozen)
-        id: yarn_install
-        run: |
-          yarn install --frozen-lockfile || echo "YARN_LOCK_MISMATCH=true" >> $GITHUB_ENV
+      # Chạy lint check
+      - name: Run ESLint
+        run: yarn lint || echo "Lint errors found, attempting to fix..."
 
-      # Nếu lockfile mismatch thì update & commit lại
-      - name: Update lockfile if needed
-        if: env.YARN_LOCK_MISMATCH == 'true'
+      # Auto fix lint + prettier
+      - name: Run auto-fix (eslint + prettier)
         run: |
-          echo "Lockfile mismatch detected. Updating lockfile..."
-          yarn install --no-frozen-lockfile
+          yarn lint:fix || true
+          yarn format:fix || true
+
+      # Commit và push lại vào branch PR
+      - name: Commit & push changes
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add yarn.lock
-          git commit -m "chore: update yarn.lock to match package.json"
-          git push
-
-      # Debug: Kiểm tra ESLint config
-      - name: Debug ESLint config
-        run: |
-          echo "Checking ESLint config..."
-          npx eslint --print-config eslint.config.js || echo "ESLint config check failed"
-          echo "Checking if ESLint can find files..."
-          npx eslint --print-config app/index.tsx || echo "ESLint file check failed"
-
-      - name: Run ESLint fix
-        run: yarn lint:fix
-        continue-on-error: true
-
-      - name: Run Prettier fix
-        run: yarn format
-        continue-on-error: true
-
-      # Debug: Kiểm tra git status
-      - name: Debug git status
-        run: |
-          echo "Git status before commit:"
-          git status --porcelain || echo "No changes detected"
-
-      - name: Commit changes if any
-        run: |
-          if [[ `git status --porcelain` ]]; then
-            echo "Changes detected, committing..."
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -am "chore: auto-fix lint & format"
-            git push
-          else
-            echo "No changes to commit"
-          fi
+          git add .
+          git commit -m "chore: auto-fix lint/prettier" || echo "No changes to commit"
+          git push origin HEAD:${GITHUB_HEAD_REF}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
