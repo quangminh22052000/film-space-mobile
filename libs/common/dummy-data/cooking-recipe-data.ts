@@ -1,4 +1,3 @@
-import { images } from "../design-system/assets/images"
 import { LevelOfDifficulties } from "../enums"
 import { RecipeCategories } from "../enums/recipeCategories"
 import { RecipeProps } from "../types/recipe"
@@ -8,7 +7,6 @@ export const cookingRecipeData: RecipeProps[] = [
     id: "1",
     name: "Bún bò",
     typeName: RecipeCategories.NOODLE,
-    image: images.bunBo,
     description: "Bún và bò",
     cookingTime: "35",
     numberOfServing: "2",
@@ -34,7 +32,6 @@ export const cookingRecipeData: RecipeProps[] = [
     id: "2",
     name: "Cơm sườn",
     typeName: RecipeCategories.RICE,
-    image: images.comSuon,
     description: "Cơm và sườn",
     cookingTime: "45",
     numberOfServing: "3",
@@ -60,7 +57,6 @@ export const cookingRecipeData: RecipeProps[] = [
     id: "3",
     name: "Hủ tiếu",
     typeName: RecipeCategories.NOODLE,
-    image: images.huTieu,
     description: "Hủ và tiếu",
     cookingTime: "30",
     numberOfServing: "2",
@@ -86,7 +82,6 @@ export const cookingRecipeData: RecipeProps[] = [
     id: "4",
     name: "Phở bò",
     typeName: RecipeCategories.NOODLE,
-    image: images.phoBo,
     description: "Phở và bò",
     cookingTime: "60",
     numberOfServing: "4",
@@ -112,7 +107,6 @@ export const cookingRecipeData: RecipeProps[] = [
     id: "5",
     name: "Mì Quảng",
     typeName: RecipeCategories.NOODLE,
-    image: images.miQuang,
     description: "Mì và Quảng",
     cookingTime: "50",
     numberOfServing: "3",
@@ -139,7 +133,6 @@ export const cookingRecipeData: RecipeProps[] = [
     id: "6",
     name: "Cơm gà",
     typeName: RecipeCategories.RICE,
-    image: images.comGa,
     description: "Cơm và gà",
     cookingTime: "40",
     numberOfServing: "2",
@@ -165,7 +158,6 @@ export const cookingRecipeData: RecipeProps[] = [
     id: "7",
     name: "Cơm chiên dương châu",
     typeName: RecipeCategories.RICE,
-    image: images.comChienDuongChau,
     description: "Cơm và chiên dương châu",
     cookingTime: "40",
     numberOfServing: "2",
@@ -191,7 +183,6 @@ export const cookingRecipeData: RecipeProps[] = [
     id: "8",
     name: "Cơm trộn Hàn Quốc",
     typeName: RecipeCategories.RICE,
-    image: images.comTronHanQuoc,
     description: "Cơm và trộn Hàn Quốc",
     cookingTime: "30",
     numberOfServing: "2",

@@ -2,6 +2,5 @@
 export type CategoryType = {
   id: string
   name: string
-  image: any
   type: string
 }

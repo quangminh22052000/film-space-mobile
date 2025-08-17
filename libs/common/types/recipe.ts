@@ -3,7 +3,6 @@ export type RecipeProps = {
   id: string
   name: string
   typeName: string
-  image: any
   description: string
   cookingTime: string
   numberOfServing: string
