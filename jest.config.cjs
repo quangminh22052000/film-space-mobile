@@ -3,10 +3,7 @@
 module.exports = {
   testEnvironment: "node",
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  testMatch: [
-    "**/__tests__/**/*.(ts|tsx|js)",
-    "**/*.(test|spec).(ts|tsx|js)"
-  ],
+  testMatch: ["**/__tests__/**/*.(ts|tsx|js)", "**/*.(test|spec).(ts|tsx|js)"],
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
@@ -17,7 +14,7 @@ module.exports = {
     "^@screens/(.*)$": "<rootDir>/screens/$1",
     "^@assets/(.*)$": "<rootDir>/assets/$1",
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.cjs'],
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.cjs"],
   collectCoverageFrom: [
     "app/**/*.{ts,tsx}",
     "libs/**/*.{ts,tsx}",
@@ -37,18 +34,12 @@ module.exports = {
   verbose: true,
   testTimeout: 10000,
   transformIgnorePatterns: [
-    "node_modules/(?!(jest-)?react-native|@react-native|@react-navigation|expo|@expo|@unimodules|@react-native-community|@react-native-async-storage|@react-native-seoul|@shopify|@tanstack|zustand|moti|lottie-react-native|@lottiefiles)"
+    "node_modules/(?!(jest-)?react-native|@react-native|@react-navigation|expo|@expo|@unimodules|@react-native-community|@react-native-async-storage|@react-native-seoul|@shopify|@tanstack|zustand|moti|lottie-react-native|@lottiefiles)",
   ],
-  testPathIgnorePatterns: [
-    "node_modules/",
-    ".expo/"
-  ],
-  modulePathIgnorePatterns: [
-    "<rootDir>/node_modules/",
-    "<rootDir>/.expo/"
-  ],
+  testPathIgnorePatterns: ["node_modules/", ".expo/"],
+  modulePathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.expo/"],
   roots: ["<rootDir>"],
   testEnvironmentOptions: {
-    url: "http://localhost"
-  }
+    url: "http://localhost",
+  },
 }

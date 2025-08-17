@@ -56,7 +56,7 @@ describe('MyComponent', () => {
     const { getByTestId } = render(
       <MyComponent onPress={mockOnPress} testID="my-button" />
     )
-    
+
     fireEvent.press(getByTestId('my-button'))
     expect(mockOnPress).toHaveBeenCalledTimes(1)
   })
@@ -66,23 +66,23 @@ describe('MyComponent', () => {
 ### 2. Test Hooks
 
 ```typescript
-import { renderHook, act } from '@testing-library/react-native'
-import { useMyHook } from '@/hooks/useMyHook'
+import { renderHook, act } from "@testing-library/react-native"
+import { useMyHook } from "@/hooks/useMyHook"
 
-describe('useMyHook', () => {
-  it('returns initial state', () => {
+describe("useMyHook", () => {
+  it("returns initial state", () => {
     const { result } = renderHook(() => useMyHook())
     expect(result.current.value).toBe(initialValue)
   })
 
-  it('updates state correctly', async () => {
+  it("updates state correctly", async () => {
     const { result } = renderHook(() => useMyHook())
-    
+
     await act(async () => {
-      result.current.updateValue('new value')
+      result.current.updateValue("new value")
     })
-    
-    expect(result.current.value).toBe('new value')
+
+    expect(result.current.value).toBe("new value")
   })
 })
 ```
@@ -90,28 +90,28 @@ describe('useMyHook', () => {
 ### 3. Test Services
 
 ```typescript
-import { ApiService } from '@/services/api'
+import { ApiService } from "@/services/api"
 
 // Mock fetch globally
 global.fetch = jest.fn()
 
-describe('ApiService', () => {
+describe("ApiService", () => {
   let apiService: ApiService
   const mockFetch = fetch as jest.MockedFunction<typeof fetch>
 
   beforeEach(() => {
-    apiService = new ApiService('https://api.example.com')
+    apiService = new ApiService("https://api.example.com")
     mockFetch.mockClear()
   })
 
-  it('makes successful GET request', async () => {
-    const mockResponse = { data: 'test' }
+  it("makes successful GET request", async () => {
+    const mockResponse = { data: "test" }
     mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => mockResponse,
     } as Response)
 
-    const result = await apiService.get('/endpoint')
+    const result = await apiService.get("/endpoint")
     expect(result).toEqual(mockResponse)
   })
 })
@@ -120,9 +120,9 @@ describe('ApiService', () => {
 ### 4. Test Stores (Zustand)
 
 ```typescript
-import { useMyStore } from '@/stores/myStore'
+import { useMyStore } from "@/stores/myStore"
 
-describe('MyStore', () => {
+describe("MyStore", () => {
   beforeEach(() => {
     // Reset store state
     useMyStore.setState({
@@ -130,9 +130,9 @@ describe('MyStore', () => {
     })
   })
 
-  it('updates state correctly', () => {
-    useMyStore.getState().updateValue('new value')
-    expect(useMyStore.getState().value).toBe('new value')
+  it("updates state correctly", () => {
+    useMyStore.getState().updateValue("new value")
+    expect(useMyStore.getState().value).toBe("new value")
   })
 })
 ```
@@ -153,7 +153,7 @@ const { getByText } = render(<MyComponent />)
 ### Mock Data
 
 ```typescript
-import { mockMovie, mockUser } from '../utils/test-utils'
+import { mockMovie, mockUser } from "../utils/test-utils"
 
 // Sử dụng mock data có sẵn
 const movie = mockMovie
@@ -163,7 +163,7 @@ const user = mockUser
 ### Async Helpers
 
 ```typescript
-import { waitForAsync } from '../utils/test-utils'
+import { waitForAsync } from "../utils/test-utils"
 
 // Chờ async operations
 await waitForAsync(100)
@@ -174,16 +174,16 @@ await waitForAsync(100)
 ### 1. Test Naming
 
 ```typescript
-describe('ComponentName', () => {
-  it('should render correctly when props are provided', () => {
+describe("ComponentName", () => {
+  it("should render correctly when props are provided", () => {
     // test implementation
   })
 
-  it('should handle user interaction correctly', () => {
+  it("should handle user interaction correctly", () => {
     // test implementation
   })
 
-  it('should display error state when API fails', () => {
+  it("should display error state when API fails", () => {
     // test implementation
   })
 })
@@ -196,10 +196,10 @@ it('should update count when button is pressed', () => {
   // Arrange
   const mockOnPress = jest.fn()
   const { getByTestId } = render(<Button onPress={mockOnPress} />)
-  
+
   // Act
   fireEvent.press(getByTestId('button'))
-  
+
   // Assert
   expect(mockOnPress).toHaveBeenCalledTimes(1)
 })
@@ -209,14 +209,14 @@ it('should update count when button is pressed', () => {
 
 ```typescript
 // Mock external dependencies
-jest.mock('@react-native-async-storage/async-storage', () =>
-  require('@react-native-async-storage/async-storage/jest/async-storage-mock')
+jest.mock("@react-native-async-storage/async-storage", () =>
+  require("@react-native-async-storage/async-storage/jest/async-storage-mock"),
 )
 
 // Mock functions
 const mockApiCall = jest.fn()
-jest.mock('@/services/api', () => ({
-  apiCall: mockApiCall
+jest.mock("@/services/api", () => ({
+  apiCall: mockApiCall,
 }))
 ```
 
@@ -260,7 +260,7 @@ npm run test:coverage
 ```typescript
 // Sử dụng act() cho state updates
 await act(async () => {
-  result.current.updateValue('new value')
+  result.current.updateValue("new value")
 })
 ```
 
