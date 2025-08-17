@@ -1,0 +1,15 @@
+{
+  "title": {
+    "home": "Home"
+  },
+  "intro": {
+    "hello": "Hello, {{name}}!",
+    "welcome1": "Make your own food",
+    "welcome2": "stay at",
+    "welcome3": "home"
+  },
+  "categories": {
+    "noodles": "Noodles",
+    "rice": "Rice"
+  }
+}

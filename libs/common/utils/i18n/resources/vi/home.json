@@ -1,0 +1,15 @@
+{
+  "title": {
+    "home": "Màn hình chính"
+  },
+  "intro": {
+    "hello": "Xin chào, {{name}}!",
+    "welcome1": "Thoả sức nấu ăn",
+    "welcome2": "tại",
+    "welcome3": "ngôi nhà của bạn"
+  },
+  "categories": {
+    "noodle": "Mì",
+    "rice": "Cơm"
+  }
+}
