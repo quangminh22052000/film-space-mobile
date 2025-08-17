@@ -82,7 +82,7 @@ export default function App() {
       <Animated.View style={[styles.ring2, ring2Style]}>
         <Animated.View style={[styles.ring1, ring1Style]}>
           <Animated.Image
-            source={images.welcome}
+            source={images.appLogo}
             style={[styles.image, imageStyle]}
           />
         </Animated.View>

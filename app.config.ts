@@ -21,17 +21,17 @@ import { version } from "./package.json"
 
 // Replace these with your EAS project ID and project slug.
 // You can find them at https://expo.dev/accounts/[account]/projects/[project].
-const EAS_PROJECT_ID = "b06ff48f-03d6-4d69-abc2-6b69d037a8ea"
-const PROJECT_SLUG = "food-recipe-mobile"
+const EAS_PROJECT_ID = "3c2d21af-aa42-4ae4-b0f7-0875a9a310fe"
+const PROJECT_SLUG = "film-space-mobile"
 const OWNER = "detour_2205"
 
 // App production config
-const APP_NAME = "Food Recipe"
-const BUNDLE_IDENTIFIER = "com.minhnq.foodrecipe.android"
-const PACKAGE_NAME = "com.minhnq.foodrecipe.ios"
+const APP_NAME = "Film Space"
+const BUNDLE_IDENTIFIER = "com.minhnq.filmspace.android"
+const PACKAGE_NAME = "com.minhnq.filmspace.ios"
 const ICON = "./libs/common/design-system/assets/images/app-logo.png"
 const ADAPTIVE_ICON = "./libs/common/design-system/assets/images/app-logo.png"
-const SCHEME = "foodrecipemobile"
+const SCHEME = "filmspacemobile"
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   console.log("⚙️ Building app for environment:", process.env.APP_ENV)
