@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from "react"
 
 import {
   NativeScrollEvent,
@@ -6,35 +6,35 @@ import {
   ScrollView,
   StyleSheet,
   ViewStyle,
-} from "react-native";
-import { FAB } from "react-native-paper";
+} from "react-native"
+import { FAB } from "react-native-paper"
 
-import { lightColors } from "../colors";
+import { lightColors } from "../colors"
 
 interface ScrollViewWithTopButtonProps {
-  children: React.ReactNode;
-  style?: ViewStyle;
+  children: React.ReactNode
+  style?: ViewStyle
 }
 
 export const ScrollViewWithTopButton = ({
   children,
   style,
 }: ScrollViewWithTopButtonProps) => {
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  const scrollViewRef = useRef<ScrollView>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false)
+  const scrollViewRef = useRef<ScrollView>(null)
 
   const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentScrollPosition = event.nativeEvent.contentOffset.y;
-    setShowScrollTop(currentScrollPosition > 100);
-  };
+    const currentScrollPosition = event.nativeEvent.contentOffset.y
+    setShowScrollTop(currentScrollPosition > 100)
+  }
 
   const handleScrollToTop = () => {
     scrollViewRef.current?.scrollTo({
       x: 0,
       y: 0,
       animated: true,
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -42,8 +42,7 @@ export const ScrollViewWithTopButton = ({
         ref={scrollViewRef}
         onScroll={handleScroll}
         scrollEventThrottle={16}
-        style={style}
-      >
+        style={style}>
         {children}
       </ScrollView>
       {showScrollTop && (
@@ -56,8 +55,8 @@ export const ScrollViewWithTopButton = ({
         />
       )}
     </>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   scrollTopFab: {
@@ -67,4 +66,4 @@ const styles = StyleSheet.create({
     backgroundColor: lightColors.shadow,
     opacity: 0.8,
   },
-});
+})

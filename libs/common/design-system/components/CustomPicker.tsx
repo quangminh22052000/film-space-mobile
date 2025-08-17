@@ -1,19 +1,19 @@
-import React from "react";
+import React from "react"
 
-import { Picker } from "@react-native-picker/picker";
-import { StyleSheet, Text, View } from "react-native";
+import { Picker } from "@react-native-picker/picker"
+import { StyleSheet, Text, View } from "react-native"
 
 interface PickerItem {
-  label: string;
-  value: string | number;
+  label: string
+  value: string | number
 }
 
 interface CustomPickerProps {
-  label?: string;
-  selectedValue: string | number;
-  items: PickerItem[];
-  onValueChange: (value: string | number) => void;
-  placeholder?: string;
+  label?: string
+  selectedValue: string | number
+  items: PickerItem[]
+  onValueChange: (value: string | number) => void
+  placeholder?: string
 }
 
 export const CustomPicker: React.FC<CustomPickerProps> = ({
@@ -29,13 +29,12 @@ export const CustomPicker: React.FC<CustomPickerProps> = ({
       <View style={styles.pickerWrapper}>
         <Picker
           selectedValue={selectedValue}
-          onValueChange={(itemValue) => onValueChange(itemValue)}
-          style={styles.picker}
-        >
+          onValueChange={itemValue => onValueChange(itemValue)}
+          style={styles.picker}>
           {placeholder && (
             <Picker.Item label={placeholder} value="" enabled={false} />
           )}
-          {items.map((item) => (
+          {items.map(item => (
             <Picker.Item
               key={item.value.toString()}
               label={item.label}
@@ -45,8 +44,8 @@ export const CustomPicker: React.FC<CustomPickerProps> = ({
         </Picker>
       </View>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -67,4 +66,4 @@ const styles = StyleSheet.create({
     height: 50,
     width: "100%",
   },
-});
+})

@@ -1,3 +1,3 @@
-import { Testing } from "@/screens/Testing/Testing";
+import { Testing } from "@/screens/Testing/Testing"
 
-export default Testing;
+export default Testing

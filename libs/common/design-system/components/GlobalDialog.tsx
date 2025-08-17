@@ -1,22 +1,22 @@
-import React from "react";
+import React from "react"
 
-import { Button, Dialog, Paragraph, Portal } from "react-native-paper";
+import { Button, Dialog, Paragraph, Portal } from "react-native-paper"
 
-import { useAppStore } from "../../store";
+import { useAppStore } from "../../store"
 
 export const GlobalDialog = () => {
-  const dialog = useAppStore((state) => state.dialog);
-  const hideDialog = useAppStore((state) => state.hideDialog);
+  const dialog = useAppStore(state => state.dialog)
+  const hideDialog = useAppStore(state => state.hideDialog)
 
   const handleConfirm = () => {
-    hideDialog();
-    dialog.onConfirm?.();
-  };
+    hideDialog()
+    dialog.onConfirm?.()
+  }
 
   const handleCancel = () => {
-    hideDialog();
-    dialog.onCancel?.();
-  };
+    hideDialog()
+    dialog.onCancel?.()
+  }
 
   return (
     <Portal>
@@ -37,5 +37,5 @@ export const GlobalDialog = () => {
         </Dialog.Actions>
       </Dialog>
     </Portal>
-  );
-};
+  )
+}

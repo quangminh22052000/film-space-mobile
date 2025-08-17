@@ -1,56 +1,55 @@
-import React from "react";
+import React from "react"
 
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { StyleSheet, View } from "react-native";
+import { BottomTabBarProps } from "@react-navigation/bottom-tabs"
+import { StyleSheet, View } from "react-native"
 
-import { useThemeContext } from "../theme";
-import { TabBarButton } from "./TabBarButton";
+import { useThemeContext } from "../theme"
+import { TabBarButton } from "./TabBarButton"
 
 export const TabBar = ({
   state,
   descriptors,
   navigation,
 }: BottomTabBarProps) => {
-  const { theme } = useThemeContext();
+  const { theme } = useThemeContext()
   return (
     <View
       style={[
         styles.tabbar,
         { backgroundColor: theme.colors.tabBarBackground },
-      ]}
-    >
+      ]}>
       {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
+        const { options } = descriptors[route.key]
         const label = (() => {
           if (typeof options.tabBarLabel === "string")
-            return options.tabBarLabel;
-          if (typeof options.title === "string") return options.title;
-          return route.name;
-        })();
+            return options.tabBarLabel
+          if (typeof options.title === "string") return options.title
+          return route.name
+        })()
 
         if (["testing", "_sitemap", "+not-found"].includes(route.name))
-          return null;
+          return null
 
-        const isFocused = state.index === index;
+        const isFocused = state.index === index
 
         const onPress = () => {
           const event = navigation.emit({
             type: "tabPress",
             target: route.key,
             canPreventDefault: true,
-          });
+          })
 
           if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name, route.params);
+            navigation.navigate(route.name, route.params)
           }
-        };
+        }
 
         const onLongPress = () => {
           navigation.emit({
             type: "tabLongPress",
             target: route.key,
-          });
-        };
+          })
+        }
 
         return (
           <TabBarButton
@@ -61,11 +60,11 @@ export const TabBar = ({
             onPress={onPress}
             onLongPress={onLongPress}
           />
-        );
+        )
       })}
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   tabbar: {
@@ -84,4 +83,4 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowOpacity: 0.1,
   },
-});
+})
