@@ -24,7 +24,7 @@ import { version } from "./package.json"
 // You can find them at https://expo.dev/accounts/[account]/projects/[project].
 const EAS_PROJECT_ID = "3c2d21af-aa42-4ae4-b0f7-0875a9a310fe"
 const PROJECT_SLUG = "film-space-mobile"
-const OWNER = "detour_2205"
+const OWNER = "quang-minh-corp"
 
 // App production config
 const APP_NAME = "Film Space"

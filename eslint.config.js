@@ -1,7 +1,7 @@
-const js = require("@eslint/js")
-const prettier = require("eslint-config-prettier")
-const importPlugin = require("eslint-plugin-import")
-const tseslint = require("typescript-eslint")
+import js from "@eslint/js"
+import prettier from "eslint-config-prettier"
+import importPlugin from "eslint-plugin-import"
+import tseslint from "typescript-eslint"
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 const config = [
@@ -15,11 +15,6 @@ const config = [
       "**/ios/build/**",
       "**/android/app/build/**",
       "**/*.bundle",
-      "**/.expo/**", // Ignore Expo generated files
-      "**/babel.config.js",
-      "**/metro.config.js",
-      "**/jest.config.cjs",
-      "**/jest.setup.cjs",
     ],
   },
 
@@ -27,24 +22,14 @@ const config = [
   js.configs.recommended,
   ...tseslint.configs.recommended,
 
-  // ✅ Cấu hình cho file ESLint config
-  {
-    files: ["eslint.config.js"],
-    languageOptions: {
-      ecmaVersion: "latest",
-      sourceType: "commonjs",
-      globals: {
-        require: "readonly",
-        module: "writable",
-        __dirname: "readonly",
-        process: "readonly",
-      },
-    },
-  },
-
   // ✅ Cấu hình môi trường cho các file cấu hình Node
   {
-    files: ["app.config.js", "babel.config.js", "metro.config.js"],
+    files: [
+      "app.config.js",
+      "babel.config.js",
+      "metro.config.js",
+      "metro.config.cjs",
+    ],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module", // vẫn giữ ESM
@@ -57,16 +42,20 @@ const config = [
     },
   },
 
-  // ✅ Cấu hình cho source code - cập nhật để bao gồm tất cả source code
+  // ✅ Cấu hình cho source code
   {
-    files: ["**/*.{ts,tsx,js,jsx}"], // lint tất cả source code
+    files: [
+      "app/**/*.{ts,tsx,js,jsx}",
+      "libs/**/*.{ts,tsx,js,jsx}",
+      "screens/**/*.{ts,tsx,js,jsx}",
+      "__tests__/**/*.{ts,tsx,js,jsx}",
+    ],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
         project: "./tsconfig.eslint.json",
         sourceType: "module",
         ecmaVersion: "latest",
-        tsconfigRootDir: __dirname,
       },
     },
     plugins: {
@@ -110,4 +99,4 @@ const config = [
   },
 ]
 
-module.exports = config
+export default config
