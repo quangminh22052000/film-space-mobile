@@ -1,9 +1,9 @@
 packages:
-  - '.'
+  - "."
 
 nodeLinker: hoisted
 minimumReleaseAge: 0
 allowBuilds:
-  '@parcel/watcher': true
+  "@parcel/watcher": true
   dooboolab-welcome: true
   unrs-resolver: true
