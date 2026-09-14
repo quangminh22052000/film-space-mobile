@@ -19,24 +19,29 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: yarn
+          cache: pnpm
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
 
       # Chạy lint check
       - name: Run ESLint
-        run: yarn lint || echo "Lint errors found, attempting to fix..."
+        run: pnpm lint || echo "Lint errors found, attempting to fix..."
 
       # Auto fix lint + prettier
       - name: Run auto-fix (eslint + prettier)
         run: |
-          yarn lint:fix || true
-          yarn format:fix || true
+          pnpm lint:fix || true
+          pnpm format || true
 
       # Commit và push lại vào branch PR
       - name: Commit & push changes
